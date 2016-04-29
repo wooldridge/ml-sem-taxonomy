@@ -65,13 +65,18 @@ app.get('/top', function(req, res){
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
   var body =  'PREFIX skos: <http://www.w3.org/2004/02/skos/core#> ' +
-              'SELECT DISTINCT ?concept ?label ' +
+              'SELECT ?concept ?label ?concept2 (sum(?count) as ?num) ' +
               'WHERE ' +
               '{ ' +
               '  ?concept skos:topConceptOf ?o . ' +
               '  ?concept skos:prefLabel ?label . ' +
+              '  OPTIONAL { ' +
+              '    ?concept skos:narrower ?concept2 . ' +
+              '    BIND(IF(?concept2 != "", 1, 0) AS ?count) ' +
+              '  } . ' +
               '} ' +
-              'ORDER BY ?label';
+              'GROUP BY ?concept ' +
+              'ORDER BY ?label ';
 
   var options = {
     method: "POST",
@@ -135,46 +140,18 @@ app.get('/narrower', function(req, res){
   var body =  'PREFIX ex: <http://example.org/> ' +
               'PREFIX wb: <http://vocabulary.worldbank.org/taxonomy/> ' +
               'PREFIX skos: <http://www.w3.org/2004/02/skos/core#> ' +
-              'SELECT ?concept ?label ' +
+              'SELECT ?concept ?label $concept2 (sum(?count) as ?num)  ' +
               'WHERE ' +
               '{ ' +
               '  wb:' + q + ' skos:narrower ?concept . ' +
               '  ?concept skos:prefLabel ?label . ' +
+              '  OPTIONAL { ' +
+              '    ?concept skos:narrower ?concept2 . ' +
+              '    BIND(IF(?concept2 != "", 1, 0) AS ?count) ' +
+              '  } . ' +
               '} ' +
+              'GROUP BY $concept ' +
               'ORDER BY ?label';
-
-  var options = {
-    method: "POST",
-    url: url,
-    body: body,
-    headers: {
-      'Content-Type': 'application/sparql-query'
-    },
-    auth: auth
-  };
-  rp(options)
-    .then(function (response) {
-      res.send(response);
-    })
-    .catch(function (err) {
-      console.log(JSON.stringify(err, null, 2));
-    });
-
-});
-
-// /v1/graphs/sparql POST
-app.get('/number', function(req, res){
-  var url  = 'http://' + config.host + ':' + config.database.port;
-      url += '/v1/graphs/sparql';
-  var q = req.query.q;
-  var body =  'PREFIX ex: <http://example.org/> ' +
-              'PREFIX wb: <http://vocabulary.worldbank.org/taxonomy/> ' +
-              'PREFIX skos: <http://www.w3.org/2004/02/skos/core#> ' +
-              'SELECT (count(?concept) as ?number)  ' +
-              'WHERE ' +
-              '{ ' +
-              '  wb:' + q + ' skos:narrower ?concept . ' +
-              '} ';
 
   var options = {
     method: "POST",
