@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wooldridge/ml-sem-taxonomy",
   "dependencies": {
+    "express": "^4.13.4",
     "marklogic": "^1.0.5",
     "request-promise": "^3.0.0"
   }
