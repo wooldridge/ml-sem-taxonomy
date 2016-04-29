@@ -2,7 +2,7 @@
 
 MarkLogic data with a semantic taxonomy.
 
-Currently you can browse the World Bank Data semantic taxonomy in a browser. More to come...
+Currently you can browse the [World Bank Group Topical Taxonomy](http://vocabulary.worldbank.org/taxonomy.html) in a browser. More to come...
 
 ## Requirements
 
