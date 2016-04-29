@@ -11,9 +11,13 @@ Currently you can browse the [World Bank Group Topical Taxonomy](http://vocabula
 
 ## To Run
 
-From root directory:
+```git clone https://github.com/wooldridge/ml-sem-taxonomy```
+
+```cd ml-sem-taxonomy```
 
 ```npm install```
+
+Copy `config_sample.js` to `config.js` and edit `config.js` for your setup (path, user, password, etc.).
 
 ```node setup```
 
