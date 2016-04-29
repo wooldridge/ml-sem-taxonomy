@@ -4,6 +4,10 @@ config.path = "/PATH/TO/PROJECT/ml-sem-taxonomy/"; // include trailing "/"
 
 config.host = "localhost";
 
+config.server = {
+  "port": 8563
+};
+
 config.database = {
   "name": "ml-sem-taxonomy",
   "port": 8562
