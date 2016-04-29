@@ -4,11 +4,11 @@
 function dispSub(id) {
   var url, cont, ref;
   if (id) {
-    url = 'http://localhost:8563/narrower?q=' + id;
+    url = '/narrower?q=' + id;
     container = 'li#' + id;
     ref = 'list-' + id;
   } else {
-    url = 'http://localhost:8563/top';
+    url = '/top';
     container = '#container';
     ref = 'list-top';
   }
