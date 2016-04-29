@@ -1,0 +1,52 @@
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: #333333;
+}
+
+h1 {
+  margin: 0;
+  padding: 10px 20px;
+  color: #3399cc;
+}
+
+#container {
+  width: 960px;
+  min-height: 500px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 5px 0;
+}
+
+#spinner {
+  background-image: url("spinner.gif");
+  width: 32px;
+  height: 32px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  display: none;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 2px 0 0 25px;
+  list-style: none;
+}
+
+li.closed {
+  background: url(images/plus.png) no-repeat left top;
+}
+
+li {
+  background: url(images/minus.png) no-repeat left top;
+}
+
+li.empty {
+  background: url(images/bullet.png) no-repeat left top;
+}
