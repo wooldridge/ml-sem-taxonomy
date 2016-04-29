@@ -83,48 +83,11 @@ function createREST() {
   rp(options)
     .then(function (parsedBody) {
       console.log('REST instance created at port: ' + config.restSetup["rest-api"]["port"]);
-      loadTransforms();
+      loadData();
     })
     .catch(function (err) {
       console.log(JSON.stringify(err, null, 2));
     });
-}
-
-var transformsPath = config.path + 'transforms/'
-    transformsFiles = fs.readdirSync(transformsPath),
-    count = 0;
-
-function loadTransforms() {
-
-  var currFile = transformsFiles.shift();
-  count++;
-  var transform;
-  transform = fs.readFileSync(transformsPath + currFile, {encoding: 'utf8'});
-
-  var db = marklogic.createDatabaseClient({
-    host: config.host,
-    port: config.database.port,
-    user: config.auth.user,
-    password: config.auth.pass,
-    authType: 'digest'
-  });
-
-  db.config.transforms.write({
-    name: currFile,
-    format: 'xslt',
-    source: transform
-  }).result(
-    function(response) {
-      if (transformsFiles.length > 0) {
-        loadTransforms();
-      } else {
-        console.log('Transforms loaded');
-        loadData();
-      }
-    },
-    function(error) { console.log(JSON.stringify(error)); }
-  );
-
 }
 
 var dataPath = config.path + 'docs/'
@@ -139,7 +102,7 @@ function loadData() {
 
   var options = {
     method: 'PUT',
-    uri: 'http://' + config.host + ':' + config.restSetup["rest-api"]["port"] + '/v1/documents?database=' + config.databaseSetup["database-name"] + '&uri=/' + currFile + '&transform=book.xsl',
+    uri: 'http://' + config.host + ':' + config.restSetup["rest-api"]["port"] + '/v1/documents?database=' + config.databaseSetup["database-name"] + '&uri=/' + currFile + '&collection=docs',
     body: buffer,
     auth: config.auth
   };
@@ -150,7 +113,7 @@ function loadData() {
         loadData();
       } else {
         console.log('Data loaded');
-        loadTriples();
+        loadTaxonomies();
       }
     })
     .catch(function (err) {
