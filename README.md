@@ -1,8 +1,6 @@
 # ml-sem-taxonomy
 
-MarkLogic data with a semantic taxonomy.
-
-Currently you can browse the [World Bank Group Topical Taxonomy](http://vocabulary.worldbank.org/taxonomy.html) in a browser. More to come...
+Currently this lets you browse the [World Bank Group Topical Taxonomy](http://vocabulary.worldbank.org/taxonomy.html) in a browser. More to come...
 
 ## Requirements
 
