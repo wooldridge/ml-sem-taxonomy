@@ -1,0 +1,12 @@
+{
+  "envelope": {
+    "triple": {
+      "subject": "/energy-and-extractives.json",
+      "predicate": "http://example.org/hasConcept",
+      "object": "http://vocabulary.worldbank.org/taxonomy/507"
+    },
+    "source": {
+      "doc": "Energy and Extractives"
+    }
+  }
+}

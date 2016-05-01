@@ -1,12 +1,12 @@
 <envelope>
   <sem:triples xmlns:sem="http://marklogic.com/semantics">
     <sem:triple>
-      <sem:subject>http://example.org/Energy_and_Extractives</sem:subject>
+      <sem:subject>/solar-energy.xml</sem:subject>
       <sem:predicate>http://example.org/hasConcept</sem:predicate>
-      <sem:object>http://vocabulary.worldbank.org/taxonomy/507</sem:object>
+      <sem:object>http://vocabulary.worldbank.org/taxonomy/528</sem:object>
     </sem:triple>
   </sem:triples>
   <source>
-    <doc>Energy and Extractives</doc>
+    <doc>Solar Energy</doc>
   </source>
 </envelope>

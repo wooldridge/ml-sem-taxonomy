@@ -1,0 +1,12 @@
+{
+  "envelope": {
+    "triple": {
+      "subject": "/solar-energy2.json",
+      "predicate": "http://example.org/hasConcept",
+      "object": "http://vocabulary.worldbank.org/taxonomy/528"
+    },
+    "source": {
+      "doc": "Another Solar Energy"
+    }
+  }
+}

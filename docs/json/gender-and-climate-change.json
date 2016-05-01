@@ -1,0 +1,12 @@
+{
+  "envelope": {
+    "triple": {
+      "subject": "/gender-and-climate-change.json",
+      "predicate": "http://example.org/hasConcept",
+      "object": "http://vocabulary.worldbank.org/taxonomy/617"
+    },
+    "source": {
+      "doc": "Gender and Climate Change"
+    }
+  }
+}

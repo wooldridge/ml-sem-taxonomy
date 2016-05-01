@@ -1,0 +1,12 @@
+{
+  "envelope": {
+    "triple": {
+      "subject": "/power-systems.json",
+      "predicate": "http://example.org/hasConcept",
+      "object": "http://vocabulary.worldbank.org/taxonomy/508"
+    },
+    "source": {
+      "doc": "Power Systems"
+    }
+  }
+}

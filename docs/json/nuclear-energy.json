@@ -1,0 +1,12 @@
+{
+  "envelope": {
+    "triple": {
+      "subject": "/nuclear-energy.json",
+      "predicate": "http://example.org/hasConcept",
+      "object": "http://vocabulary.worldbank.org/taxonomy/509"
+    },
+    "source": {
+      "doc": "Nuclear Energy"
+    }
+  }
+}
