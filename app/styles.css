@@ -6,10 +6,37 @@ body {
   background-color: #333333;
 }
 
+/* div {
+  border: solid 1px red;
+} */
+
+div#nav {
+  position: relative;
+  /* float: left; */
+  width: 240px;
+  padding: 10px;
+}
+
+div#summary {
+  position: relative;
+  float: right;
+  width: 670px;
+  padding: 10px;
+}
+
+div#results {
+  position: relative;
+  float: right;
+  width: 670px;
+  padding: 10px;
+}
+
 h1 {
   margin: 0;
-  padding: 5px 0;
+  padding: 10px;
   color: #3399cc;
+  width: 100%;
+  background-color: #DDDDDD;
 }
 
 #container {
@@ -52,4 +79,20 @@ li {
 
 li.empty {
   background: url(images/bullet.png) no-repeat left top;
+}
+
+div.result {
+  padding: 5px 0;
+}
+
+div.result-title {
+  font-weight: bold;
+}
+
+#nav ul li label {
+  font-size: 12px;
+}
+
+label.selected {
+  font-weight: bold;
 }
