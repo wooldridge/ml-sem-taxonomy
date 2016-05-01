@@ -83,14 +83,72 @@ function createREST() {
   rp(options)
     .then(function (parsedBody) {
       console.log('REST instance created at port: ' + config.restSetup["rest-api"]["port"]);
-      loadData();
+      createOptions();
     })
     .catch(function (err) {
       console.log(JSON.stringify(err, null, 2));
     });
 }
 
-var dataPath = config.path + 'docs/'
+function createOptions() {
+  var options = {
+    method: 'PUT',
+    uri: 'http://' + config.host + ':' + config.restSetup["rest-api"]["port"] + '/v1/config/query/taxonomy',
+    body: config.searchSetup,
+    json: true,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    auth: config.auth
+  };
+  rp(options)
+    .then(function (parsedBody) {
+      console.log('Search options created');
+      loadTransforms();
+    })
+    .catch(function (err) {
+      console.log(JSON.stringify(err, null, 2));
+    });
+}
+
+var transformsPath = config.path + 'transforms/'
+    transformsFiles = fs.readdirSync(transformsPath),
+    count = 0;
+
+function loadTransforms() {
+
+  var currFile = transformsFiles.shift();
+  count++;
+  var transform;
+  transform = fs.readFileSync(transformsPath + currFile, {encoding: 'utf8'});
+
+  var db = marklogic.createDatabaseClient({
+    host: config.host,
+    port: config.database.port,
+    user: config.auth.user,
+    password: config.auth.pass,
+    authType: 'digest'
+  });
+
+  db.config.transforms.write({
+    name: currFile,
+    format: 'xslt',
+    source: transform
+  }).result(
+    function(response) {
+      if (transformsFiles.length > 0) {
+        loadTransforms();
+      } else {
+        console.log('Transforms loaded');
+        loadData();
+      }
+    },
+    function(error) { console.log(JSON.stringify(error)); }
+  );
+
+}
+
+var dataPath = config.path + 'docs/json/'
     dataFiles = fs.readdirSync(dataPath),
     count = 0;
 
