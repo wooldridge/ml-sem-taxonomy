@@ -23,7 +23,6 @@ function dispSub(id) {
     function(data) {
       data = JSON.parse(data);
       if ($(container + ' ul').length) {
-        //$(container + ' ul#' + ref).toggle();
         $(container + ' ul').toggle();
         $(container + ' ul').toggleClass('closed');
         return;
@@ -123,7 +122,6 @@ function concept(concept) {
   }).done(
     function(data) {
       console.dir(data);
-      //data = JSON.parse(data);
       $('#spinner').hide();
       $('#summary').html('Results found: ' + data.length);
       if (data.length > 0) {
