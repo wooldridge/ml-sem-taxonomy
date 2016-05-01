@@ -87,8 +87,7 @@ app.get('/concept', function(req, res){
     body: body,
     json: true,
     headers: {
-      'Accept': 'application/rdf+json',
-      'Content-Type': 'application/sparql-query'
+      'Content-Type': 'application/json'
     },
     auth: auth
   };
