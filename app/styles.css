@@ -96,3 +96,9 @@ div.result-title {
 label.selected {
   font-weight: bold;
 }
+
+p.instructions {
+  background-color: #FAFAD2;
+  padding: 5px;
+  font-style: italic;
+}
