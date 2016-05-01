@@ -73,6 +73,7 @@ app.get('/search', function(req, res){
 // SEARCH for a CONCEPT
 app.get('/concept', function(req, res){
   var q = req.query.q;
+  // Perform a SPARQL search to match documents
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
   var body = 'PREFIX wb: <http://vocabulary.worldbank.org/taxonomy/> ' +
@@ -80,7 +81,6 @@ app.get('/concept', function(req, res){
              'WHERE { ' +
              '  ?uri <http://example.org/hasConcept> wb:' + q + ' . ' +
              '} ';
-
   var options = {
     method: "POST",
     url: url,
@@ -94,10 +94,10 @@ app.get('/concept', function(req, res){
   rp(options)
     .then(function (response) {
       console.log(JSON.stringify(response, null, 2));
-      //res.json(response);
       var uris = response.results.bindings.map(function (curr) {
         return curr.uri.value;
       })
+      // Return documents based on URIs from SPARQL search
       db.documents.read({
         uris: uris
       }).result(
@@ -149,7 +149,7 @@ app.get('/top', function(req, res){
 
 });
 
-// TOP concepts in hierarchy, with doc counts
+// TOP concepts in hierarchy, with document and subconcept counts
 app.get('/top2', function(req, res){
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
@@ -263,7 +263,7 @@ app.get('/narrower', function(req, res){
 
 });
 
-// NARROWER concepts in hierarchy, with subconcept counts
+// NARROWER concepts in hierarchy, with document and subconcept counts
 app.get('/narrower2', function(req, res){
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
