@@ -21,7 +21,7 @@ var auth = {
   sendImmediately: false
 };
 
-// /v1/search POST
+// SEARCH for keywords
 app.get('/search', function(req, res){
   var q = req.query.q;
   var url  = 'http://' + config.host + ':' + config.database.port;
@@ -60,7 +60,7 @@ app.get('/search', function(req, res){
 
 });
 
-// /v1/graphs/sparql POST
+// TOP concepts in hierarchy, with subconcept counts
 app.get('/top', function(req, res){
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
@@ -97,7 +97,7 @@ app.get('/top', function(req, res){
 
 });
 
-// /v1/graphs/sparql POST
+// BROADER concepts in hierarchy
 app.get('/broader', function(req, res){
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
@@ -132,7 +132,7 @@ app.get('/broader', function(req, res){
 
 });
 
-// /v1/graphs/sparql POST
+// NARROWER concepts in hierarchy, with subconcept counts
 app.get('/narrower', function(req, res){
   var url  = 'http://' + config.host + ':' + config.database.port;
       url += '/v1/graphs/sparql';
